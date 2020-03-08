@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>shumpei-blog</title>
-</head>
-<body>
-  <p>Hi there!</p>
-  <div>
-    <p>publised : 2020.03.07</p>
-    <h2><a href="">My post is here</a></h2>
-    <p>murakmaiです！こんにちは</p>
-  </div>
+{% extends 'blog/base.html' %}
 
-  {% for post in posts %}
-    <div>
-      <p>published: {{ post.published_date }}</p>
-      <h2><a href="">{{ post.title }}</a></h2>
-      <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-  {% endfor %}
-</body>
-</html>
+{% block content %}
+{% for post in posts %}
+<div class="post">
+    <p>published: {{ post.published_date }}</p>
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.text|linebreaksbr }}</p>
+</div>
+{% endfor %}
+{% endblock %}
